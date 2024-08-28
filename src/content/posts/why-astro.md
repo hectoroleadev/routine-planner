@@ -1,15 +1,15 @@
 ---
-title: Why choose Astro over another web framework
+title: CAM VII 
 slug: why-astro
-description: Astro is an all-in-one web framework for building fast, content-focused websites. Learn more.
+description: Leo's school
 category:
-  - Three
+  - places
 tags:
-  - Tailwind
-  - Astro
-  - Jamstack
+  - School
+  - CAM
+  - Place
 pubDate: 2023-09-09
-cover: https://images.unsplash.com/photo-1506220926022-cc5c12acdb35?q=80&w=1960&h=1102&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+cover: https://scontent.fagu3-1.fna.fbcdn.net/v/t39.30808-6/280313205_4864975533608572_5802948600105736461_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=GyWYgD4Y7LoQ7kNvgFgmjD4&_nc_ht=scontent.fagu3-1.fna&oh=00_AYBaOSz8MFDrWUfPN1uIrlw7j9tp3zdPCBeQH6xzYTGlIw&oe=66D55CCE
 coverAlt: AstroVerse-Aliases
 author: VV
 ---
