@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from "astro:content";
+import OptimizedCover from "@components/OptimizedPicture.astro";
+import FormattedDate from "@components/FormattedDate.astro";
+import { Image } from "astro:assets";
+
+interface Props {
+  routine: CollectionEntry<"routines">;
+}
+
+const { routine } = Astro.props;
+---
+
+<div
+  class="relative overflow-hidden rounded-xl bg-white transition-transform duration-500 hover:-translate-y-1 hover:scale-105 dark:bg-neutral-900"
+>
+  <!-- <a href={`/posts/${routine.slug}/`} class="block"> -->
+  <!-- <OptimizedCover src={routine.data.cover} alt={routine.data.coverAlt} /> -->
+  <Image
+    src={routine.data.cover}
+    height={720}
+    width={720}
+    alt={routine.data.coverAlt}
+  />
+  <div class="absolute bottom-0 end-0 start-0 bg-gradient-to-t p-5 md:p-6">
+    <div class="mt-16 flex items-center gap-4 text-xs text-white">
+      <span>{routine.data.tags.join(" ")}</span>
+      <FormattedDate date={routine.data.pubDate} />
+    </div>
+    <h3 class="mt-2 text-lg font-bold text-white">{routine.data.title}</h3>
+  </div>
+  <!-- </a> -->
+</div>

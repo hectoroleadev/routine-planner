@@ -7,7 +7,7 @@ import Pagination from "@components/Pagination.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "@consts";
 
 export async function getStaticPaths() {
-  console.log('entrooee!!');
+  console.log("entrooee!!");
   const allPosts = await getCollection("posts");
   allPosts.sort(
     (a, b) =>

@@ -1,5 +1,5 @@
 ---
-title: CAM VII 
+title: CAM VII
 slug: why-astro
 description: Leo's school
 category:

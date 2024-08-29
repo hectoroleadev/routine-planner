@@ -9,7 +9,7 @@ tags:
   - Astro
   - Morbi
 pubDate: 2023-09-05
-cover: https://images.unsplash.com/photo-1447600514716-ca6f3974c346?w=1960&h=1102&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODV8fGJsYWNrfGVufDB8MHwwfHx8Mg%3D%3D
+cover: https://scontent.fagu3-1.fna.fbcdn.net/v/t39.30808-6/280313205_4864975533608572_5802948600105736461_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=GyWYgD4Y7LoQ7kNvgFgmjD4&_nc_ht=scontent.fagu3-1.fna&oh=00_AYBaOSz8MFDrWUfPN1uIrlw7j9tp3zdPCBeQH6xzYTGlIw&oe=66D55CCE
 coverAlt: AstroVerse-Third post
 author: VV
 ---
