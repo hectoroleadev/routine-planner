@@ -1,0 +1,88 @@
+---
+import RoutineHeroCard from "@components/routine/HeroCard.astro";
+import Pagination from "@components/Pagination.astro";
+import RoutineCard from "@components/routine/CommonCard.astro";
+import { SITE_DESCRIPTION, SITE_TITLE, ROUTINES_PER_PAGE } from "@consts";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const allRoutines = await getCollection("routines");
+  allRoutines.sort(
+    (a, b) =>
+      new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+  );
+
+  const firstPageRoutines = allRoutines.slice(0, ROUTINES_PER_PAGE);
+  const remainingRoutines = allRoutines.slice(ROUTINES_PER_PAGE);
+  const totalPages = 1 + Math.ceil(remainingRoutines.length / 12);
+
+  const paths = [
+    {
+      params: { page: "1" },
+      props: {
+        page: {
+          data: firstPageRoutines,
+          currentPage: 1,
+          lastPage: totalPages,
+        },
+      },
+    },
+  ];
+
+  for (let i = 2; i <= totalPages; i++) {
+    const pageRoutines = remainingRoutines.slice((i - 2) * 12, (i - 1) * 12);
+    paths.push({
+      params: { page: i.toString() },
+      props: {
+        page: { data: pageRoutines, currentPage: i, lastPage: totalPages },
+      },
+    });
+  }
+
+  return paths;
+}
+
+const { page } = Astro.props;
+---
+
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  {
+    page.currentPage === 1 ? (
+      <>
+        <div class="mb-4 grid grid-cols-1">
+          {page.data.length > 0 && <RoutineHeroCard routine={page.data[0]} />}
+        </div>
+        <div class="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
+          {page.data.slice(1, 5).map((post) => (
+            <RoutineCard routine={post} />
+          ))}
+        </div>
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {page.data.slice(3).map((post) => (
+            <RoutineCard routine={post} />
+          ))}
+        </div>
+      </>
+    ) : (
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {page.data.map((post) => (
+          <RoutineCard routine={post} />
+        ))}
+      </div>
+    )
+  }
+
+  <Pagination
+    currentPage={page.currentPage}
+    lastPage={page.lastPage}
+    urlPrev={page.currentPage > 1
+      ? `/routines/page/${page.currentPage - 1}`
+      : null}
+    urlNext={page.currentPage < page.lastPage
+      ? `/routines/page/${page.currentPage + 1}`
+      : null}
+    basePath="/routines/page"
+    maxDisplayedPages={5}
+  />
+</BaseLayout>

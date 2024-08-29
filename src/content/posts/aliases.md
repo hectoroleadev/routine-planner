@@ -3,7 +3,7 @@ title: Aliases
 slug: aliases
 description: An intro to aliases with Astro.
 category:
-  - One
+  - places
 tags:
   - Tailwind
   - Astro

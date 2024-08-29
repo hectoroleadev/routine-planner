@@ -1,0 +1,41 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import PostCard from "@components/CommonCard.astro";
+import RoutineHeroCard from "@components/routine/HeroCard.astro";
+
+export async function getStaticPaths() {
+  const [allRoutines, posts] = await Promise.all([
+    getCollection("routines"),
+    getCollection("posts"),
+  ]);
+  return allRoutines.flatMap((routine) => {
+    const filteredPosts = posts.filter(
+      (post) => post.data.routine.id === routine.id,
+    );
+    filteredPosts.sort(
+      (a, b) =>
+        new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+    );
+
+    return {
+      params: { slug: routine.id },
+      props: {
+        posts: filteredPosts,
+        routine: routine,
+      },
+    };
+  });
+}
+
+const { posts, routine } = Astro.props;
+---
+
+<BaseLayout title={"title"} description={"description"}>
+  <div class="mb-4 grid grid-cols-1">
+    <RoutineHeroCard routine={routine} />
+  </div>
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+    {posts.map((post) => <PostCard post={post} />)}
+  </div>
+</BaseLayout>

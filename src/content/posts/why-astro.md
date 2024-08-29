@@ -9,9 +9,10 @@ tags:
   - CAM
   - Place
 pubDate: 2023-09-09
-cover: https://scontent.fagu3-1.fna.fbcdn.net/v/t39.30808-6/280313205_4864975533608572_5802948600105736461_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=GyWYgD4Y7LoQ7kNvgFgmjD4&_nc_ht=scontent.fagu3-1.fna&oh=00_AYBaOSz8MFDrWUfPN1uIrlw7j9tp3zdPCBeQH6xzYTGlIw&oe=66D55CCE
+cover: https://storage.hectorolea.dev/leo-pictograms/pictograms/clean-up-time.jpg
 coverAlt: AstroVerse-Aliases
 author: VV
+routine: aliases
 ---
 
 Astro is an **all-in-one** **web framework** for building **fast,** **content-focused websites.**

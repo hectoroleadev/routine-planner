@@ -1,7 +1,8 @@
 ---
 import Pagination from "@components/Pagination.astro";
 import Card from "@components/routine/CommonCard.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "@consts";
+import HeroCard from "@components/routine/HeroCard.astro";
+import { SITE_DESCRIPTION, SITE_TITLE, ROUTINES_PER_PAGE } from "@consts";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
@@ -11,21 +12,26 @@ allRoutines.sort(
     new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
 );
 
-const routinesPerPage = 5;
+const routinesPerPage = ROUTINES_PER_PAGE;
 const firstPageRoutines = allRoutines.slice(0, routinesPerPage);
 const totalPages = Math.ceil(allRoutines.length / routinesPerPage);
+const [firtRoutine] = firstPageRoutines;
 
-const basePath = "/page/";
+const basePath = "/routines/page/";
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <div class="grid grid-cols-1">
+    <div class="col-span-1 mb-4">
+      {firstPageRoutines.length > 0 && <HeroCard routine={firtRoutine} />}
+    </div>
+
     <div class="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
-      {
-        firstPageRoutines
-          .slice(0, 5)
-          .map((routine) => <Card routine={routine} />)
-      }
+      {firstPageRoutines.slice(1, 3).map((post) => <Card routine={post} />)}
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {firstPageRoutines.slice(3).map((routine) => <Card routine={routine} />)}
     </div>
   </div>
 
@@ -33,7 +39,7 @@ const basePath = "/page/";
     currentPage={1}
     lastPage={totalPages}
     urlPrev={null}
-    urlNext={totalPages > 1 ? `/page/2` : null}
+    urlNext={totalPages > 1 ? `/routines/page/2` : null}
     basePath={basePath}
     maxDisplayedPages={5}
   />
